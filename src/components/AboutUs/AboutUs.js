@@ -1,7 +1,6 @@
 import React from "react";
 import Fade from "react-reveal/Fade";
 
-import logo from "https://i.imgur.com/IfxTrNN.jpg";
 import "./AboutUs.css";
 
 // Used to display the company mission and first preview of the menu.
@@ -20,7 +19,7 @@ const AboutUs = () => {
       </Fade>
       <Fade right>
         <div className="imgWrapper">
-          <img src={logo} alt="Temp Logo" />
+          <img src="https://i.imgur.com/IfxTrNN.jpg" alt="Temp Logo" />
           <div className="aboutInfoContainer">
             <h1 className="aboutInfoHeader"> LOOK AT OUR MENU</h1>
             <h1 className="aboutInfoHeader">FULL OF DELICIOUS DRINKS</h1>
