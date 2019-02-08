@@ -1,0 +1,81 @@
+.aboutWrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-top: 5px solid black;
+  border-bottom: 5px solid black;
+}
+
+.aboutUsMission {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #eee;
+  border-right: 2.5px solid black;
+}
+
+.aboutInfoContainer {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.aboutHeader {
+  color: var(--brandColor);
+}
+
+.aboutInfoHeader {
+  color: #fff;
+  padding: 10px;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.menuButton {
+  text-align: center;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  background: var(--brandColor);
+}
+
+.menuButton a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.aboutSubTitle {
+  color: var(--brandColor);
+}
+
+.imgWrapper {
+  width: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-left: 2.5px solid black;
+}
+
+img {
+  margin: 0;
+}
+
+@media (max-width: 900px) {
+  .aboutWrapper {
+    grid-template-columns: 1fr;
+    border: none;
+  }
+
+  .aboutUsMission {
+    padding: 20px;
+    border: none;
+  }
+
+  .imgWrapper {
+    border: none;
+  }
+}

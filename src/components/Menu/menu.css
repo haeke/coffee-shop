@@ -1,0 +1,12 @@
+.menuWrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 10px;
+  text-align: center;
+}
+
+@media (max-width: 900px) {
+  .menuWrapper {
+    grid-template-columns: 1fr;
+  }
+}

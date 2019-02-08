@@ -1,0 +1,37 @@
+.hoursWrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.hoursHeader {
+  margin-top: 20px;
+  color: 'lightblue';
+  text-align: center;
+  color: var(--brandColor);
+}
+
+.hoursInfoWrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.hours {
+  color: var(--brandColor);
+}
+
+span {
+  letter-spacing: 3px;
+}
+
+.hoursContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (max-width: 900px) {
+  .hoursInfoWrapper {
+    grid-template-columns: 1fr;
+  }
+}

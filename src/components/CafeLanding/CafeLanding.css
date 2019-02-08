@@ -1,0 +1,29 @@
+.cafeLandingContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.videoStyle {
+  width: 100%;
+}
+
+.cafeTitleContainer {
+  position: absolute;
+  color: white;
+  border: 5px solid white;
+  padding: 40px;
+}
+
+.cafeTitleHeader {
+  color: white;
+  margin-bottom: 2px;
+}
+
+.cafeSubTitle {
+  color: white;
+  text-align: center;
+  margin: 0;
+}
