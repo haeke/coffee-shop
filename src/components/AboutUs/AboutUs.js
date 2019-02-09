@@ -21,7 +21,7 @@ const AboutUs = () => {
         <div className="imgWrapper">
           <img src="https://i.imgur.com/IfxTrNN.jpg" alt="Temp Logo" />
           <div className="aboutInfoContainer">
-            <h1 className="aboutInfoHeader"> LOOK AT OUR MENU</h1>
+            <h1 className="aboutInfoHeader">LOOK AT OUR MENU</h1>
             <h1 className="aboutInfoHeader">FULL OF DELICIOUS DRINKS</h1>
             <button className="menuButton">
               <a href="#menu">SHOW MENU</a>
