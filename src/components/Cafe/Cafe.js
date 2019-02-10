@@ -7,6 +7,8 @@ import Hours from "../Hours/Hours";
 import CafeLanding from "../CafeLanding/CafeLanding";
 import Footer from "../Footer/Footer";
 
+import AddItem from "../AddItem/AddItem";
+
 // The entry point of the application where we add all of the components to be rendered onto the page.
 
 const Cafe = () => {
@@ -30,6 +32,8 @@ const Cafe = () => {
           </li>
         </ul>
       </Header>
+      {/* <AddItem url="/api/items/drinks" title="Add Drink" />
+      <AddItem url="/api/items/food" title="Add Food" /> */}
       <CafeLanding />
       <AboutUs />
       <Hours />

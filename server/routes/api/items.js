@@ -14,19 +14,6 @@ router.get("/test", async (req, res) =>
   res.status(200).json({ msg: "Items route works" })
 );
 
-//@route GET /api/items/
-//@desc return the current list of items
-//@access Public
-router.get("/", async (req, res) => {
-  try {
-    let items = await Items.find().sort({ date: -1 });
-    console.log("items ", items);
-    res.json(items);
-  } catch (error) {
-    res.status(404).json(error);
-  }
-});
-
 //@route GET /api/items/drinks
 //@desc return the current list of items
 //@access Public
@@ -45,14 +32,13 @@ router.get("/drinks", async (req, res) => {
 //@access Public but it will be private soon.
 router.post("/drinks", async (req, res) => {
   try {
-    // Create an object from the request that includes the name, price and description
-    const newItem = {
+    // pass the object to the Items model
+    let item = new Drinks({
       name: req.body.name,
+      other: req.body.other,
       price: req.body.price,
       description: req.body.description
-    };
-    // pass the object to the Items model
-    let item = new Drinks(newItem);
+    });
     // call save on the item
     item.save();
     // return the new item array to confirm adding the new item is working.

@@ -1,9 +1,11 @@
 const dotenv = require("dotenv");
 dotenv.config();
+const cors = require("cors");
 const express = require("express");
 // make a connection to MongoDB
 const connect = require("./connect");
 const bodyParser = require("body-parser");
+const passport = require("passport");
 const morgan = require("morgan");
 
 // import the other routers that are defined
@@ -11,6 +13,12 @@ const users = require("./routes/api/users");
 const items = require("./routes/api/items");
 
 const app = express();
+app.use(cors());
+
+// configure passport with the strategy we have in place
+app.use(passport.initialize());
+// Passport configuration
+require("./config/passport")(passport);
 
 app.use(morgan("dev"));
 
