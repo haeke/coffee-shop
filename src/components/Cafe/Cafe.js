@@ -6,6 +6,7 @@ import AboutUs from "../AboutUs/AboutUs";
 import Hours from "../Hours/Hours";
 import CafeLanding from "../CafeLanding/CafeLanding";
 import Footer from "../Footer/Footer";
+import Login from "../Login/Login";
 
 import AddItem from "../AddItem/AddItem";
 
@@ -34,6 +35,7 @@ const Cafe = () => {
       </Header>
       {/* <AddItem url="/api/items/drinks" title="Add Drink" />
       <AddItem url="/api/items/food" title="Add Food" /> */}
+      <Login />
       <CafeLanding />
       <AboutUs />
       <Hours />
