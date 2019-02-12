@@ -8,6 +8,7 @@ class AddItem extends React.Component {
     super(props);
 
     this.state = {
+      itemType: "",
       name: "",
       price: "",
       description: ""
@@ -25,18 +26,28 @@ class AddItem extends React.Component {
   handleSubmit = event => {
     event.preventDefault();
 
-    const { name, price, description } = this.state;
+    const { name, itemType, price, description } = this.state;
     const { url } = this.props;
-    api.post(url, { name, price, description });
+    api.post(url, { name, price, description, item_type: itemType });
   };
 
   render() {
     const { title } = this.props;
-    const { name, price, description, itemName, info } = this.state;
+    const { name, itemName, price, description, itemType, info } = this.state;
     return (
       <div className="addItemWrapper">
         <h1>{title}</h1>
         <form onSubmit={this.handleSubmit}>
+          <TextFieldGroup
+            name="itemType"
+            type="text"
+            value={itemType}
+            placeholder="Type of Item"
+            error={itemName}
+            info={info}
+            onChange={this.handleChange}
+            disabled={false}
+          />
           <TextFieldGroup
             name="name"
             type="text"

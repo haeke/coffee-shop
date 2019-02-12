@@ -11,9 +11,21 @@ class Login extends Component {
 
     this.state = {
       name: "",
-      password: "",
-      isAuthenticated: false
+      password: ""
     };
+  }
+
+  componentDidMount() {
+    // use to redirect the user if they are already logged in.
+    if (this.props.isAuthenticated) {
+      this.props.history.push("/");
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.auth.isAuthenticated) {
+      this.props.push.history("/");
+    }
   }
 
   handleChange = event => {
@@ -39,13 +51,10 @@ class Login extends Component {
         setAuth(token);
         // decode token to get the user data
         const decoded = jwt_decode(token);
-        console.log("res ", decoded);
+
+        this.props.setAuthenticated();
       })
       .then(() => {
-        this.setState(prevState => ({
-          isAuthenticated: !prevState
-        }));
-
         this.props.history.push("/");
       })
       .catch(error => {
