@@ -1,5 +1,8 @@
 import React, { Component } from "react";
+import jwt_decode from "jwt-decode";
+
 import auth from "../../api/restaurant";
+import setAuth from "../../utils/setAuthToken";
 import TextFieldGroup from "../TextFieldGroup/TextFieldGroup";
 
 class Login extends Component {
@@ -8,7 +11,8 @@ class Login extends Component {
 
     this.state = {
       name: "",
-      password: ""
+      password: "",
+      isAuthenticated: false
     };
   }
 
@@ -24,9 +28,25 @@ class Login extends Component {
     event.preventDefault();
     const { name, password } = this.state;
     auth
-      .post("/api/users/register", { name, password })
+      .post("/api/users/login", { name, password })
       .then(res => {
-        console.log("res ", res);
+        // we confirmed that we can login
+        // res.data should return the JWT token
+        const { token } = res.data;
+        // set the token to local storage
+        localStorage.setItem("espressoToken", token);
+        // set the auth token to the header of all requests
+        setAuth(token);
+        // decode token to get the user data
+        const decoded = jwt_decode(token);
+        console.log("res ", decoded);
+      })
+      .then(() => {
+        this.setState(prevState => ({
+          isAuthenticated: !prevState
+        }));
+
+        this.props.history.push("/");
       })
       .catch(error => {
         console.error("error: ", error);
