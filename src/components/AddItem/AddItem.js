@@ -3,6 +3,8 @@ import api from "../../api/restaurant";
 
 import TextFieldGroup from "../TextFieldGroup/TextFieldGroup";
 
+import "./AddItem.css";
+
 class AddItem extends React.Component {
   constructor(props) {
     super(props);
@@ -29,6 +31,13 @@ class AddItem extends React.Component {
     const { name, itemType, price, description } = this.state;
     const { url } = this.props;
     api.post(url, { name, price, description, item_type: itemType });
+    // reset the text after submitting
+    this.setState({
+      name: "",
+      itemType: "",
+      price: "",
+      description: ""
+    });
   };
 
   render() {
@@ -36,8 +45,8 @@ class AddItem extends React.Component {
     const { name, itemName, price, description, itemType, info } = this.state;
     return (
       <div className="addItemWrapper">
-        <h1>{title}</h1>
-        <form onSubmit={this.handleSubmit}>
+        <h1 className="addItemHeader">{title}</h1>
+        <form className="addItemForm" onSubmit={this.handleSubmit}>
           <TextFieldGroup
             name="itemType"
             type="text"
@@ -78,7 +87,11 @@ class AddItem extends React.Component {
             onChange={this.handleChange}
             disabled={false}
           />
-          <button type="button" onClick={this.handleSubmit}>
+          <button
+            className="addItemButton"
+            type="button"
+            onClick={this.handleSubmit}
+          >
             {title}
           </button>
         </form>

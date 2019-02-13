@@ -1,9 +1,10 @@
 import React, { Component } from "react";
-import jwt_decode from "jwt-decode";
 
 import auth from "../../api/restaurant";
 import setAuth from "../../utils/setAuthToken";
 import TextFieldGroup from "../TextFieldGroup/TextFieldGroup";
+
+import "./Login.css";
 
 class Login extends Component {
   constructor(props) {
@@ -11,7 +12,8 @@ class Login extends Component {
 
     this.state = {
       name: "",
-      password: ""
+      password: "",
+      errors: {}
     };
   }
 
@@ -23,6 +25,7 @@ class Login extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    // handle the case where the isAuthenticated prop changes
     if (nextProps.auth.isAuthenticated) {
       this.props.push.history("/");
     }
@@ -43,18 +46,17 @@ class Login extends Component {
       .post("/api/users/login", { name, password })
       .then(res => {
         // we confirmed that we can login
-        // res.data should return the JWT token
+        // res.data.token should return the JWT token
         const { token } = res.data;
         // set the token to local storage
         localStorage.setItem("espressoToken", token);
         // set the auth token to the header of all requests
         setAuth(token);
-        // decode token to get the user data
-        const decoded = jwt_decode(token);
-
+        // set the isAuthenticated boolean to true
         this.props.setAuthenticated();
       })
       .then(() => {
+        // redirect to the homepage after the user is logged in
         this.props.history.push("/");
       })
       .catch(error => {
@@ -64,8 +66,9 @@ class Login extends Component {
   render() {
     const { name, password } = this.state;
     return (
-      <div>
-        <form onSubmit={this.handleSubmit}>
+      <div className="loginWrapper">
+        <h2 className="loginHeader">Admin Login</h2>
+        <form onSubmit={this.handleSubmit} className="formContainer">
           <TextFieldGroup
             name="name"
             value={name}
@@ -79,7 +82,9 @@ class Login extends Component {
             onChange={this.handleChange}
             placeholder="Password..."
           />
-          <button onClick={this.handleSubmit}>Submit</button>
+          <button className="loginButton" onClick={this.handleSubmit}>
+            Submit
+          </button>
         </form>
       </div>
     );

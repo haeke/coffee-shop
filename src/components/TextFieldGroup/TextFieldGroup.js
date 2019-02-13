@@ -19,7 +19,7 @@ const TextFieldGroup = ({
     <div className="field">
       <input
         type={type}
-        className={classnames("form-control form-control-lg", {
+        className={classnames("inputField", {
           "input-error": error
         })}
         placeholder={placeholder}
@@ -28,7 +28,7 @@ const TextFieldGroup = ({
         onChange={onChange}
         disabled={disabled}
       />
-      {info && <small className="ui error message">{info}</small>}
+      {info && <small className="message">{info}</small>}
       {error && <div className="dataError">{error}</div>}
     </div>
   );

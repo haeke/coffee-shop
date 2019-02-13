@@ -50,11 +50,8 @@ router.post("/login", async (req, res) => {
   const password = req.body.password;
 
   let user = await User.findOne({ name });
-  console.log("user object - ", user.password);
-  console.log("password ", password);
   // check password
   bcrypt.compare(password, user.password).then(isMatch => {
-    console.log("isMatch ", isMatch);
     if (isMatch) {
       // user matched - so create a JWT payload
       const payload = { id: user.id, name: user.name };

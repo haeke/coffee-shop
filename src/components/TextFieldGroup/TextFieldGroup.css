@@ -1,0 +1,16 @@
+.field {
+  width: 90%;
+  margin: 10px 0;
+}
+.inputField {
+  width: 100%;
+  border: 2px solid black;
+}
+
+.input-error {
+  border: 2px solid red;
+}
+
+.dataError {
+  color: red;
+}

@@ -4,6 +4,7 @@ import jwt_decode from "jwt-decode";
 
 import Header from "../Header/Header";
 import Menu from "../Menu/menu";
+import MenuList from "../MenuList/MenuList";
 import AboutUs from "../AboutUs/AboutUs";
 import Hours from "../Hours/Hours";
 import CafeLanding from "../CafeLanding/CafeLanding";
@@ -33,7 +34,6 @@ class Cafe extends Component {
       const decoded = jwt_decode(localStorage.espressoToken);
       // check for an expired token
       const currentTime = Date.now() / 1000;
-      console.log("currentTime: ", currentTime);
       if (decoded.exp < currentTime) {
         // logout the user
         localStorage.removeItem("espressoToken");
@@ -42,9 +42,6 @@ class Cafe extends Component {
       }
 
       this.setAuthenticated();
-
-      // redirect user to the home page
-      console.log(this.props);
     }
   }
 
@@ -56,7 +53,7 @@ class Cafe extends Component {
 
   setAuthenticated = () => {
     // set the authenticated state to true
-    this.setState(prevState => ({
+    this.setState(() => ({
       isAuthenticated: true
     }));
   };
@@ -81,9 +78,13 @@ class Cafe extends Component {
               <li className="linkItem">
                 <a href="#menu">Menu</a>
               </li>
-              {this.state.isAuthenticated && (
+              {this.state.isAuthenticated ? (
                 <li className="linkItem">
                   <Link to="/add-items">Add-Items</Link>
+                </li>
+              ) : (
+                <li className="linkItem">
+                  <Link to="/login">Login</Link>
                 </li>
               )}
             </ul>
@@ -98,6 +99,7 @@ class Cafe extends Component {
                   <AboutUs />
                   <Hours />
                   <Menu />
+                  <MenuList />
                   <Footer />
                 </div>
               )}

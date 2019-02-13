@@ -10,7 +10,6 @@ opts.secretOrKey = process.env.SERVER_SECRET;
 module.exports = passport => {
   passport.use(
     new JwtStrategy(opts, async (jwt_payload, done) => {
-      console.log(jwt_payload);
       // get the user associated with the jwt_payload
       let user = await User.findById(jwt_payload.id);
       try {

@@ -15,7 +15,7 @@ const MenuItem = ({
   return (
     <div className={classnames("menuItem", menuStyle)}>
       <p className={itemStyle}>{item}</p>
-      <p className={itemPriceStyle}>{itemPrice}</p>
+      <p className={itemPriceStyle}>${itemPrice}</p>
     </div>
   );
 };
