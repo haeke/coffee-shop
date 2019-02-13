@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import Fade from "react-reveal/Fade";
 import restaurantApi from "../../api/restaurant";
 
-import MenuItem from "../MenuItem/MenuItem";
 import FoodItems from "../FoodItems/FoodItems";
 
 class MenuList extends Component {

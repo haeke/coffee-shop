@@ -24,4 +24,9 @@
   width: 90%;
   background: none;
   border: 2px solid black;
+  height: 40px;
+}
+
+.loginButton:hover {
+  cursor: pointer;
 }

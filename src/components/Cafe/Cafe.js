@@ -15,6 +15,8 @@ import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import AddItem from "../AddItem/AddItem";
 import setAuthToken from "../../utils/setAuthToken";
 
+import "./Cafe.css";
+
 // The entry point of the application where we add all of the components to be rendered onto the page.
 
 class Cafe extends Component {
@@ -51,6 +53,13 @@ class Cafe extends Component {
     }
   }
 
+  logOut = () => {
+    // logout the user
+    localStorage.removeItem("espressoToken");
+    // remove the auth header on future requests
+    setAuthToken(false);
+  };
+
   setAuthenticated = () => {
     // set the authenticated state to true
     this.setState(() => ({
@@ -62,39 +71,51 @@ class Cafe extends Component {
     return (
       <Router>
         <main>
-          <Header>
-            <ul className="headerList">
-              <li className="logoItem">
-                <a href="#logo" className="logo">
-                  The Espresso Shop
-                </a>
-              </li>
-              <li className="linkItem">
-                <a href="#about">About</a>
-              </li>
-              <li className="linkItem">
-                <a href="#hours">Hours</a>
-              </li>
-              <li className="linkItem">
-                <a href="#menu">Menu</a>
-              </li>
-              {this.state.isAuthenticated ? (
-                <li className="linkItem">
-                  <Link to="/add-items">Add-Items</Link>
-                </li>
-              ) : (
-                <li className="linkItem">
-                  <Link to="/login">Login</Link>
-                </li>
-              )}
-            </ul>
-          </Header>
           <div>
             <Route
               exact
               path="/"
               component={() => (
                 <div>
+                  <Header>
+                    <ul className="headerList">
+                      <li className="logoItem">
+                        <a href="#logo" className="logo">
+                          The Espresso Shop
+                        </a>
+                      </li>
+                      <li className="linkItem">
+                        <a href="#about">About</a>
+                      </li>
+                      <li className="linkItem">
+                        <a href="#hours">Hours</a>
+                      </li>
+                      <li className="linkItem">
+                        <a href="#menu">Menu</a>
+                      </li>
+                      {this.state.isAuthenticated ? (
+                        <React.Fragment>
+                          <li className="linkItem">
+                            <Link to="/add-items">Add-Items</Link>
+                          </li>
+                          <li className="linkItem">
+                            <Link to="/">
+                              <button
+                                className="logoutButton"
+                                onClick={this.logOut}
+                              >
+                                Logout
+                              </button>
+                            </Link>
+                          </li>
+                        </React.Fragment>
+                      ) : (
+                        <li className="linkItem">
+                          <Link to="/login">Login</Link>
+                        </li>
+                      )}
+                    </ul>
+                  </Header>
                   <CafeLanding />
                   <AboutUs />
                   <Hours />
@@ -108,11 +129,25 @@ class Cafe extends Component {
               exact
               path="/login"
               component={props => (
-                <Login
-                  isAuthenticated={this.state.isAuthenticated}
-                  setAuthenticated={this.setAuthenticated}
-                  {...props}
-                />
+                <React.Fragment>
+                  <Header>
+                    <ul className="headerList">
+                      <li className="logoItem">
+                        <Link to="/" className="logo">
+                          The Espresso Shop
+                        </Link>
+                      </li>
+                      <li className="linkItem">
+                        <Link to="/">Home</Link>
+                      </li>
+                    </ul>
+                  </Header>
+                  <Login
+                    isAuthenticated={this.state.isAuthenticated}
+                    setAuthenticated={this.setAuthenticated}
+                    {...props}
+                  />
+                </React.Fragment>
               )}
             />
             <Switch>
@@ -121,7 +156,30 @@ class Cafe extends Component {
                 path="/add-items"
                 auth={this.state.isAuthenticated}
                 component={props => (
-                  <AddItem title="Add Items" url="/api/items/" {...props} />
+                  <React.Fragment>
+                    <Header>
+                      <ul className="headerList">
+                        <li className="logoItem">
+                          <Link to="/" className="logo">
+                            The Espresso Shop
+                          </Link>
+                        </li>
+                        <li className="linkItem">
+                          <Link to="/">Home</Link>
+                        </li>
+                        {this.state.isAuthenticated ? (
+                          <li className="linkItem">
+                            <Link to="/add-items">Add-Items</Link>
+                          </li>
+                        ) : (
+                          <li className="linkItem">
+                            <Link to="/login">Login</Link>
+                          </li>
+                        )}
+                      </ul>
+                    </Header>
+                    <AddItem title="Add Items" url="/api/items/" {...props} />
+                  </React.Fragment>
                 )}
               />
             </Switch>
