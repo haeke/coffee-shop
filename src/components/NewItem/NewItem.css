@@ -1,0 +1,31 @@
+.newItemWrapper {
+  width: 90%;
+  margin: auto;
+}
+.itemContainer {
+  display: inline-block;
+  width: 30%;
+}
+.itemWrapper {
+  width: 100%;
+}
+
+.type {
+  font-size: 16px;
+  font-weight: 800;
+}
+
+.itemName {
+  font-size: 16px;
+  font-weight: 800;
+}
+
+.itemPrice {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.itemDescription {
+  font-size: 16px;
+  font-weight: 600;
+}

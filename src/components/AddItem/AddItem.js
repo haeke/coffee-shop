@@ -2,6 +2,7 @@ import React from "react";
 import api from "../../api/restaurant";
 
 import TextFieldGroup from "../TextFieldGroup/TextFieldGroup";
+import NewItem from "../NewItem/NewItem";
 
 import "./AddItem.css";
 
@@ -13,7 +14,8 @@ class AddItem extends React.Component {
       itemType: "",
       name: "",
       price: "",
-      description: ""
+      description: "",
+      items: []
     };
   }
 
@@ -36,66 +38,81 @@ class AddItem extends React.Component {
       name: "",
       itemType: "",
       price: "",
-      description: ""
+      description: "",
+      items: [
+        ...this.state.items,
+        { name, price, description, item_type: itemType }
+      ]
     });
   };
 
   render() {
     const { title } = this.props;
-    const { name, itemName, price, description, itemType, info } = this.state;
+    const {
+      name,
+      itemName,
+      price,
+      description,
+      itemType,
+      info,
+      items
+    } = this.state;
     return (
-      <div className="addItemWrapper">
-        <h1 className="addItemHeader">{title}</h1>
-        <form className="addItemForm" onSubmit={this.handleSubmit}>
-          <TextFieldGroup
-            name="itemType"
-            type="text"
-            value={itemType}
-            placeholder="Type of Item"
-            error={itemName}
-            info={info}
-            onChange={this.handleChange}
-            disabled={false}
-          />
-          <TextFieldGroup
-            name="name"
-            type="text"
-            value={name}
-            placeholder="Name of Item"
-            error={itemName}
-            info={info}
-            onChange={this.handleChange}
-            disabled={false}
-          />
-          <TextFieldGroup
-            name="price"
-            type="text"
-            value={price}
-            placeholder="Price of Item"
-            error={itemName}
-            info={info}
-            onChange={this.handleChange}
-            disabled={false}
-          />
-          <TextFieldGroup
-            name="description"
-            type="text"
-            value={description}
-            placeholder="Description of Item"
-            error={itemName}
-            info={info}
-            onChange={this.handleChange}
-            disabled={false}
-          />
-          <button
-            className="addItemButton"
-            type="button"
-            onClick={this.handleSubmit}
-          >
-            {title}
-          </button>
-        </form>
-      </div>
+      <React.Fragment>
+        <div className="addItemWrapper">
+          <h1 className="addItemHeader">{title}</h1>
+          <form className="addItemForm" onSubmit={this.handleSubmit}>
+            <TextFieldGroup
+              name="itemType"
+              type="text"
+              value={itemType}
+              placeholder="Type of Item"
+              error={itemName}
+              info={info}
+              onChange={this.handleChange}
+              disabled={false}
+            />
+            <TextFieldGroup
+              name="name"
+              type="text"
+              value={name}
+              placeholder="Name of Item"
+              error={itemName}
+              info={info}
+              onChange={this.handleChange}
+              disabled={false}
+            />
+            <TextFieldGroup
+              name="price"
+              type="text"
+              value={price}
+              placeholder="Price of Item"
+              error={itemName}
+              info={info}
+              onChange={this.handleChange}
+              disabled={false}
+            />
+            <TextFieldGroup
+              name="description"
+              type="text"
+              value={description}
+              placeholder="Description of Item"
+              error={itemName}
+              info={info}
+              onChange={this.handleChange}
+              disabled={false}
+            />
+            <button
+              className="addItemButton"
+              type="button"
+              onClick={this.handleSubmit}
+            >
+              {title}
+            </button>
+          </form>
+        </div>
+        {items.length > 0 && <NewItem items={items} />}
+      </React.Fragment>
     );
   }
 }
