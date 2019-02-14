@@ -30,9 +30,10 @@ app.use("/api/users", users);
 // Example - should exist on http://localhost:port/api/items/(routes defined in items file)
 app.use("/api/items", items);
 
-const port = process.env.PORT || 2000;
+const port = process.env.REACT_APP_PORT || 2500;
+console.log("port ", port);
 
-connect(process.env.MONGO_URI).then(() => {
+connect(process.env.REACT_APP_MONGO_URI).then(() => {
   app.listen(port, () => {
     console.log(`server running on http://localhost:${port}`);
   });

@@ -2,11 +2,16 @@ import React from "react";
 import Fade from "react-reveal/Fade";
 import "./NewItem.css";
 
+// This component takes the list of items that a user currently entered and lists them on the page for reference.
+
 const NewItem = ({ items }) => {
   return (
     <div className="newItemWrapper">
       {items.map(item => (
-        <div className="itemContainer" key={item._id}>
+        <div className="itemContainer" key={`${item.item_type}-${item.name}`}>
+          <div className="newItem">
+            <h1 className="newItemHeader">New Item</h1>
+          </div>
           <Fade right>
             <div className="itemWrapper">
               <p className="type">Type: {item.item_type}</p>

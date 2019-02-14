@@ -58,7 +58,7 @@ class AddItem extends React.Component {
       items
     } = this.state;
     return (
-      <React.Fragment>
+      <div className="addItemContainer">
         <div className="addItemWrapper">
           <h1 className="addItemHeader">{title}</h1>
           <form className="addItemForm" onSubmit={this.handleSubmit}>
@@ -112,7 +112,7 @@ class AddItem extends React.Component {
           </form>
         </div>
         {items.length > 0 && <NewItem items={items} />}
-      </React.Fragment>
+      </div>
     );
   }
 }

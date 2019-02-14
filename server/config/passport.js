@@ -5,7 +5,7 @@ const mongoose = require("mongoose");
 const User = mongoose.model("users");
 const opts = {};
 opts.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
-opts.secretOrKey = process.env.SERVER_SECRET;
+opts.secretOrKey = process.env.REACT_APP_SERVER_SECRET;
 
 module.exports = passport => {
   passport.use(

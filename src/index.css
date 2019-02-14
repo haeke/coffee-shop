@@ -646,7 +646,7 @@ li a {
 
 .logoItem {
   flex: 1;
-  margin-right: auto !important;
+  margin-right: auto;
 }
 
 .linkItem {
@@ -660,6 +660,15 @@ li a {
 @media only screen and (max-width: 900px) {
   .logo {
     font-size: 18px;
+  }
+
+  .logoItem {
+    margin-right: none !important;
+  }
+
+  .headerList {
+    flex-direction: column;
+    height: auto;
   }
 }
 

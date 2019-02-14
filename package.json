@@ -15,8 +15,10 @@
   },
   "homepage": "https://haeke.github.io/coffee-shop",
   "scripts": {
+    "dev": "concurrently \"npm run server\" \"npm run start\"",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
+    "server": "nodemon ./server/server.js",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",

@@ -58,7 +58,7 @@ router.post("/login", async (req, res) => {
       // sign token -
       jwt.sign(
         payload,
-        process.env.SERVER_SECRET,
+        process.env.REACT_APP_SERVER_SECRET,
         { expiresIn: 3600 },
         (err, token) => {
           res.json({

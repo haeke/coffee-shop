@@ -1,11 +1,21 @@
+.addItemContainer {
+  display: grid;
+  grid-template-columns: 500px 1fr;
+  grid-template-rows: 1fr;
+  grid-gap: 10px;
+}
+
 .addItemWrapper {
   display: flex;
   width: 90%;
+  height: 400px;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   border: 5px solid black;
   margin: 10px auto 0 auto;
+  position: sticky;
+  top: 40px;
 }
 
 .addItemHeader {
@@ -24,4 +34,5 @@
   width: 90%;
   border: 2px solid black;
   background: none;
+  margin: 10px 0;
 }
