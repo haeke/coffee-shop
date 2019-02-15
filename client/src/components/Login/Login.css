@@ -1,0 +1,32 @@
+.loginWrapper {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  margin: 10px auto 0 auto;
+  justify-content: center;
+  align-items: center;
+  border: 5px solid black;
+}
+
+.formContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.loginHeader {
+  text-align: center;
+}
+
+.loginButton {
+  width: 90%;
+  background: none;
+  border: 2px solid black;
+  height: 40px;
+}
+
+.loginButton:hover {
+  cursor: pointer;
+}

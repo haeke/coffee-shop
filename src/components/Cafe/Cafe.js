@@ -149,7 +149,7 @@ class Cafe extends Component {
                   <CafeLanding />
                   <AboutUs />
                   <Hours />
-                  <Menu />
+                  {/* <Menu /> */}
                   <MenuList items={items} />
                   <Footer />
                 </div>

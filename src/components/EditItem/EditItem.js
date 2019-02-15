@@ -16,6 +16,7 @@ class EditItem extends Component {
   }
 
   componentDidMount() {
+    // Get the item that we are for by looking the item up by its ID
     api
       .get(`/api/items/${this.props.match.params.id}`)
       .then(res => {
@@ -39,7 +40,7 @@ class EditItem extends Component {
   };
 
   deleteItem = async () => {
-    // used to delete an item
+    // Delete an item from Mongo by looking for its ID
     try {
       await api.delete(`/api/items/${this.props.match.params.id}`);
       api
@@ -75,6 +76,7 @@ class EditItem extends Component {
       price: "",
       description: ""
     }));
+    // make a request to Mongo for the current list of items
     api
       .get("/api/items")
       .then(res => {

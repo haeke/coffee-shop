@@ -46,6 +46,7 @@ class AddItem extends React.Component {
       price: "",
       description: ""
     }));
+    // Makes a request to Mongo to update the current menu on the homepage.
     api
       .get("/api/items")
       .then(res => {

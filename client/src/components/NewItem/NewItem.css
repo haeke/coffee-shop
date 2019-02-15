@@ -1,0 +1,49 @@
+.newItemWrapper {
+  width: 90%;
+  margin: 10px auto;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.newItem {
+  background: var(--brandColor);
+  color: var(--brandTextColor);
+  padding: 10px;
+}
+
+.newItemHeader {
+  font-size: 16px;
+  font-weight: 800;
+  margin: 0;
+  text-align: left;
+}
+
+.itemContainer {
+  display: inline-block;
+  width: 30%;
+}
+.itemWrapper {
+  width: 100%;
+  padding: 10px;
+}
+
+.type {
+  font-size: 16px;
+  font-weight: 800;
+}
+
+.itemName {
+  font-size: 16px;
+  font-weight: 800;
+}
+
+.itemPrice {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.itemDescription {
+  font-size: 16px;
+  font-weight: 600;
+}
