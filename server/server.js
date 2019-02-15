@@ -41,7 +41,7 @@ if (process.env.NODE_ENV === "production") {
   });
 }
 
-const port = process.env.REACT_APP_PORT || 2500;
+const port = process.env.PORT || 2500;
 console.log("port ", port);
 
 connect(process.env.REACT_APP_MONGO_URI).then(() => {
