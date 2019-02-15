@@ -12,6 +12,7 @@ import Footer from "../Footer/Footer";
 import Login from "../Login/Login";
 
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
+import EditItem from "../EditItem/EditItem";
 import AddItem from "../AddItem/AddItem";
 import setAuthToken from "../../utils/setAuthToken";
 
@@ -179,6 +180,28 @@ class Cafe extends Component {
                       </ul>
                     </Header>
                     <AddItem title="Add Items" url="/api/items/" {...props} />
+                  </React.Fragment>
+                )}
+              />
+              <PrivateRoute
+                exact
+                path="/edit-item/:id"
+                auth={this.state.isAuthenticated}
+                component={props => (
+                  <React.Fragment>
+                    <Header>
+                      <ul className="headerList">
+                        <li className="logoItem">
+                          <Link to="/" className="logo">
+                            The Espresso Shop
+                          </Link>
+                        </li>
+                        <li className="linkItem">
+                          <Link to="/">Home</Link>
+                        </li>
+                      </ul>
+                    </Header>
+                    <EditItem title="Edit Item" url="/api/items" {...props} />
                   </React.Fragment>
                 )}
               />

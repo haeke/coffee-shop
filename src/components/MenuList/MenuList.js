@@ -3,7 +3,7 @@ import Fade from "react-reveal/Fade";
 import restaurantApi from "../../api/restaurant";
 
 import FoodItems from "../FoodItems/FoodItems";
-
+// Query's the MongoDB store to list of items on the Menu in the home page.
 class MenuList extends Component {
   constructor(props) {
     super(props);

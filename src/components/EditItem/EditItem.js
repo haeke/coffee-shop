@@ -1,30 +1,33 @@
-import React from "react";
+import React, { Component } from "react";
 import api from "../../api/restaurant";
 
 import TextFieldGroup from "../TextFieldGroup/TextFieldGroup";
-import NewItem from "../NewItem/NewItem";
 
-import "./AddItem.css";
-
-class AddItem extends React.Component {
+class EditItem extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      itemType: "breakfast",
+      itemType: "",
       name: "",
       price: "",
-      description: "",
-      items: []
+      description: ""
     };
   }
 
   componentDidMount() {
-    api.get("/api/items").then(res => {
-      this.setState({
-        items: res.data
-      });
-    });
+    api
+      .get(`/api/items/${this.props.match.params.id}`)
+      .then(res => {
+        console.table(res.data);
+        this.setState({
+          itemType: res.data.item_type,
+          name: res.data.name,
+          price: res.data.price,
+          description: res.data.description
+        });
+      })
+      .catch(error => console.error(error));
   }
 
   handleChange = event => {
@@ -35,39 +38,46 @@ class AddItem extends React.Component {
     });
   };
 
-  handleSubmit = event => {
-    event.preventDefault();
-    const { name, itemType, price, description } = this.state;
-    const { url } = this.props;
-    api.post(url, { name, price, description, item_type: itemType });
-    // reset the text after submitting
-    this.setState({
-      name: "",
-      itemType: "",
-      price: "",
-      description: "",
-      items: [
-        ...this.state.items,
-        { name, price, description, item_type: itemType }
-      ]
-    });
+  deleteItem = async () => {
+    // used to delete an item
+    try {
+      await api.delete(`/api/items/${this.props.match.params.id}`);
+      this.props.history.push("/");
+    } catch (error) {
+      console.error("error ", error);
+    }
   };
 
-  render() {
-    const { title } = this.props;
-    const {
+  handleSubmit = async event => {
+    event.preventDefault();
+
+    const { name, itemType, price, description } = this.state;
+    const { url } = this.props;
+    api.patch(`${url}/${this.props.match.params.id}`, {
+      _id: this.props.match.params.id,
       name,
-      itemName,
       price,
       description,
-      itemType,
-      info,
-      items
-    } = this.state;
+      item_type: itemType
+    });
+    // reset the text after submitting
+    this.setState(
+      {
+        name: "",
+        itemType: "",
+        price: "",
+        description: ""
+      },
+      this.props.history.push("/")
+    );
+  };
+  render() {
+    const { title } = this.props;
+    const { name, itemName, price, description, itemType, info } = this.state;
     return (
-      <div className="addItemContainer">
-        <div className="addItemWrapper">
-          <h1 className="addItemHeader">{title}</h1>
+      <div className="editItemContainer">
+        <div className="editItemWrapper">
+          <h1 className="editItemHeader">{title}</h1>
           <form className="addItemForm" onSubmit={this.handleSubmit}>
             <div className="field">
               <select
@@ -121,12 +131,18 @@ class AddItem extends React.Component {
             >
               {title}
             </button>
+            <button
+              className="addItemButton"
+              type="button"
+              onClick={this.deleteItem}
+            >
+              Delete Item
+            </button>
           </form>
         </div>
-        {items.length > 0 && <NewItem items={items} />}
       </div>
     );
   }
 }
 
-export default AddItem;
+export default EditItem;

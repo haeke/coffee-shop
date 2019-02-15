@@ -5,8 +5,10 @@
   "dependencies": {
     "axios": "^0.18.0",
     "classnames": "^2.2.6",
+    "concurrently": "^4.1.0",
     "gh-pages": "^2.0.1",
     "jwt-decode": "^2.2.0",
+    "random-uuid-v4": "0.0.8",
     "react": "^16.8.1",
     "react-dom": "^16.8.1",
     "react-reveal": "^1.2.2",

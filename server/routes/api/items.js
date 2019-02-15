@@ -44,13 +44,75 @@ router.post(
       // pass the object to the Items model
       let item = new Items(newItem);
       // add to the comments array
-      console.log("the new comment ", item);
+      console.log("the new item ", item);
       item.save();
       // return the new item array to confirm adding the new item is working.
       res.json(item);
     } catch (error) {
       // Display an error if there is one.
       res.send(404).json(error);
+    }
+  }
+);
+
+//@route GET api/items/:id
+//@desc Edit an Item
+//@access Private
+router.get(
+  "/:id",
+  passport.authenticate("jwt", { session: false }),
+  async (req, res) => {
+    try {
+      console.log(req.params.id);
+      let item = await Items.findById(req.params.id);
+      res.json(item);
+    } catch (error) {
+      res.send(404).json("Item not found.");
+    }
+  }
+);
+
+//@route PATCH api/items/:id
+//@desc Edit the properties of an item
+//@access Private
+router.patch(
+  "/:id",
+  passport.authenticate("jwt", { session: false }),
+  async (req, res) => {
+    try {
+      console.log("id ", req.params.id);
+      // Create an object from the request that includes the name, price and description
+      const updateItem = {
+        _id: req.params.id,
+        item_type: req.body.item_type,
+        name: req.body.name,
+        price: req.body.price,
+        description: req.body.description
+      };
+      console.log("updateItem ", updateItem);
+      let item = await Items.findByIdAndUpdate(updateItem._id, updateItem);
+      item.save();
+    } catch (error) {
+      res.sendStatus(404).json("Authorization error");
+    }
+  }
+);
+
+//@route DELETE api/items/:id
+//@desc Delete an item
+//@access Private
+router.delete(
+  "/:id",
+  passport.authenticate("jwt", { session: false }),
+  async (req, res) => {
+    try {
+      // find the item by its id
+      const item = Items.findById(req.params.id);
+      // call remove on the item to delete it from the database.
+      await item.remove();
+      res.sendStatus(200);
+    } catch (error) {
+      res.sendStatus(404).json("Cannot Delete Item");
     }
   }
 );
