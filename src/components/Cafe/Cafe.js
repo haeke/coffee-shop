@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import api from "../../api/restaurant";
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 import jwt_decode from "jwt-decode";
 
@@ -23,9 +24,10 @@ import "./Cafe.css";
 class Cafe extends Component {
   constructor(props) {
     super(props);
-
+    this._hasData = false;
     this.state = {
-      isAuthenticated: false
+      isAuthenticated: false,
+      items: []
     };
   }
 
@@ -46,6 +48,15 @@ class Cafe extends Component {
 
       this.setAuthenticated();
     }
+
+    api
+      .get("/api/items")
+      .then(res => {
+        this.getMenu(res.data);
+      })
+      .catch(error => {
+        console.error("Error : ", error);
+      });
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -54,9 +65,26 @@ class Cafe extends Component {
     }
   }
 
+  componentWillUnmount() {
+    this._hasData = false;
+  }
+
+  getMenu = result => {
+    this._hasData = true;
+    if (this._hasData) {
+      this.setState({
+        items: result,
+        dataLoaded: true
+      });
+    }
+  };
+
   logOut = () => {
     // logout the user
     localStorage.removeItem("espressoToken");
+    this.setState({
+      isAuthenticated: false
+    });
     // remove the auth header on future requests
     setAuthToken(false);
   };
@@ -69,6 +97,7 @@ class Cafe extends Component {
   };
 
   render() {
+    const { items } = this.state;
     return (
       <Router>
         <main>
@@ -121,7 +150,7 @@ class Cafe extends Component {
                   <AboutUs />
                   <Hours />
                   <Menu />
-                  <MenuList />
+                  <MenuList items={items} />
                   <Footer />
                 </div>
               )}
@@ -179,7 +208,13 @@ class Cafe extends Component {
                         )}
                       </ul>
                     </Header>
-                    <AddItem title="Add Items" url="/api/items/" {...props} />
+                    <AddItem
+                      title="Add Items"
+                      url="/api/items/"
+                      items={items}
+                      getMenu={this.getMenu}
+                      {...props}
+                    />
                   </React.Fragment>
                 )}
               />
@@ -201,7 +236,12 @@ class Cafe extends Component {
                         </li>
                       </ul>
                     </Header>
-                    <EditItem title="Edit Item" url="/api/items" {...props} />
+                    <EditItem
+                      getMenu={this.getMenu}
+                      title="Edit Item"
+                      url="/api/items"
+                      {...props}
+                    />
                   </React.Fragment>
                 )}
               />

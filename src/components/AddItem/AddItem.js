@@ -14,18 +14,17 @@ class AddItem extends React.Component {
       itemType: "breakfast",
       name: "",
       price: "",
-      description: "",
-      items: []
+      description: ""
     };
   }
 
-  componentDidMount() {
-    api.get("/api/items").then(res => {
-      this.setState({
-        items: res.data
-      });
-    });
-  }
+  // componentDidMount() {
+  //   api.get("/api/items").then(res => {
+  //     this.setState({
+  //       items: res.data
+  //     });
+  //   });
+  // }
 
   handleChange = event => {
     const { name, value } = event.target;
@@ -41,29 +40,25 @@ class AddItem extends React.Component {
     const { url } = this.props;
     api.post(url, { name, price, description, item_type: itemType });
     // reset the text after submitting
-    this.setState({
+    this.setState(() => ({
       name: "",
       itemType: "",
       price: "",
-      description: "",
-      items: [
-        ...this.state.items,
-        { name, price, description, item_type: itemType }
-      ]
-    });
+      description: ""
+    }));
+    api
+      .get("/api/items")
+      .then(res => {
+        this.props.getMenu(res.data);
+      })
+      .catch(error => {
+        console.error("Error : ", error);
+      });
   };
 
   render() {
-    const { title } = this.props;
-    const {
-      name,
-      itemName,
-      price,
-      description,
-      itemType,
-      info,
-      items
-    } = this.state;
+    const { title, items } = this.props;
+    const { name, itemName, price, description, itemType, info } = this.state;
     return (
       <div className="addItemContainer">
         <div className="addItemWrapper">

@@ -42,6 +42,14 @@ class EditItem extends Component {
     // used to delete an item
     try {
       await api.delete(`/api/items/${this.props.match.params.id}`);
+      api
+        .get("/api/items")
+        .then(res => {
+          this.props.getMenu(res.data);
+        })
+        .catch(error => {
+          console.error("Error : ", error);
+        });
       this.props.history.push("/");
     } catch (error) {
       console.error("error ", error);
@@ -61,15 +69,20 @@ class EditItem extends Component {
       item_type: itemType
     });
     // reset the text after submitting
-    this.setState(
-      {
-        name: "",
-        itemType: "",
-        price: "",
-        description: ""
-      },
-      this.props.history.push("/")
-    );
+    this.setState(() => ({
+      name: "",
+      itemType: "",
+      price: "",
+      description: ""
+    }));
+    api
+      .get("/api/items")
+      .then(res => {
+        this.props.getMenu(res.data);
+      })
+      .catch(error => {
+        console.error("Error : ", error);
+      });
   };
   render() {
     const { title } = this.props;
