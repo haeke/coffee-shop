@@ -4,7 +4,6 @@ import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 import jwt_decode from "jwt-decode";
 
 import Header from "../Header/Header";
-import Menu from "../Menu/menu";
 import MenuList from "../MenuList/MenuList";
 import AboutUs from "../AboutUs/AboutUs";
 import Hours from "../Hours/Hours";
