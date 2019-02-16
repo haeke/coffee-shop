@@ -3,6 +3,8 @@ import Fade from "react-reveal/Fade";
 
 import FoodItems from "../FoodItems/FoodItems";
 
+import "../Menu/menu.css";
+
 const MenuList = ({ items }) => {
   return (
     <Fade top>
