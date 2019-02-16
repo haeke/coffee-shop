@@ -19,12 +19,7 @@
     "nodemon": "^1.18.10",
     "passport": "^0.4.0",
     "passport-jwt": "^4.0.0",
-    "random-uuid-v4": "0.0.8",
-    "react": "^16.8.1",
-    "react-dom": "^16.8.1",
-    "react-reveal": "^1.2.2",
-    "react-router-dom": "^4.3.1",
-    "react-scripts": "2.1.3"
+    "random-uuid-v4": "0.0.8"
   },
   "homepage": "https://haeke.github.io/coffee-shop",
   "scripts": {
