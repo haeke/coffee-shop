@@ -9,6 +9,7 @@ import AboutUs from "../AboutUs/AboutUs";
 import Hours from "../Hours/Hours";
 import CafeLanding from "../CafeLanding/CafeLanding";
 import Footer from "../Footer/Footer";
+import Location from "../Location/Location";
 import Login from "../Login/Login";
 
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
@@ -148,7 +149,7 @@ class Cafe extends Component {
                   <CafeLanding />
                   <AboutUs />
                   <Hours />
-                  {/* <Menu /> */}
+                  <Location />
                   <MenuList items={items} />
                   <Footer />
                 </div>
