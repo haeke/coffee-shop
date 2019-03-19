@@ -46,12 +46,12 @@ class GoogleMap extends Component {
         >
           <Marker
             name={"Your position"}
-            position={{ lat: -73.935242, lng: -73.935242 }}
+            position={{ lat: 40.73061, lng: -73.935242 }}
             onClick={this.onMarkerClick}
           />
           <InfoWindow marker={this.state.activeMarker} visible={showInfoWindow}>
             <div className="infoWindowContainer">
-              <h2 className="infoWindowHeader">The Espress Shop!</h2>
+              <h2 className="infoWindowHeader">The Espresso Shop!</h2>
               <h6 className="infoWindowSubHeader">52 E 13th St</h6>
               <h6 className="infoWindowSubHeader">New York, NY 10003</h6>
             </div>

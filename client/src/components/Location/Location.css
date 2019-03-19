@@ -2,10 +2,22 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   height: 40vh;
+  background: var(--brandColor);
 }
 
 .locationText {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.locationTextHeader {
+  margin: 0 0 5px 0;
+  color: var(--brandTextColor);
+}
+
+.locationTextSubHeader {
+  margin: 0 0 5px 0;
+  color: var(--brandTextColor);
 }
