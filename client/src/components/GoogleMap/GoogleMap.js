@@ -51,7 +51,7 @@ class GoogleMap extends Component {
           <InfoWindow marker={activeMarker} visible={showInfoWindow}>
             <div className="infoWindowContainer">
               <h2 className="infoWindowHeader">The Espresso Shop!</h2>
-              <h6 className="infoWindowSubHeader">52 E 13th St</h6>
+              <h6 className="infoWindowSubHeader">52 East 13th St</h6>
               <h6 className="infoWindowSubHeader">New York, NY 10003</h6>
             </div>
           </InfoWindow>
