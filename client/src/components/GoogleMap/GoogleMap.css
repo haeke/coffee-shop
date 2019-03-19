@@ -1,0 +1,14 @@
+.infoWindowContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.infoWindowHeader {
+  margin: 0 0 5px 0;
+}
+
+.infoWindowSubHeader {
+  margin: 0 0 5px 0;
+}

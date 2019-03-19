@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Map, Marker, InfoWindow, GoogleApiWrapper } from "google-maps-react";
 
+import "./GoogleMap.css";
+
 const mapStyles = {
   width: "100%",
   height: "100%"
@@ -8,20 +10,23 @@ const mapStyles = {
 
 class GoogleMap extends Component {
   state = {
-    showInfoWindow: false
+    showInfoWindow: false,
+    activeMarker: {}
   };
 
   onMapClick = () => {
     if (this.state.showInfoWindow) {
       this.setState(() => ({
-        showInfoWindow: false
+        showInfoWindow: false,
+        activeMarker: null
       }));
     }
   };
 
-  onMarkerClick = () => {
+  onMarkerClick = (props, marker, e) => {
     this.setState(() => ({
-      showInfoWindow: true
+      showInfoWindow: true,
+      activeMarker: marker
     }));
   };
   render() {
@@ -34,19 +39,21 @@ class GoogleMap extends Component {
           zoom={14}
           style={mapStyles}
           initialCenter={{
-            lat: -1.2285,
-            lng: 36.8233
+            lat: 40.73061,
+            lng: -73.935242
           }}
           onClick={this.onMapClick}
         >
           <Marker
             name={"Your position"}
-            position={{ lat: -1.2285, lng: 36.8233 }}
+            position={{ lat: -73.935242, lng: -73.935242 }}
             onClick={this.onMarkerClick}
           />
           <InfoWindow marker={this.state.activeMarker} visible={showInfoWindow}>
-            <div>
-              <h2>The Espress Shop!</h2>
+            <div className="infoWindowContainer">
+              <h2 className="infoWindowHeader">The Espress Shop!</h2>
+              <h6 className="infoWindowSubHeader">52 E 13th St</h6>
+              <h6 className="infoWindowSubHeader">New York, NY 10003</h6>
             </div>
           </InfoWindow>
         </Map>
