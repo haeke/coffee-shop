@@ -148,8 +148,8 @@ class Cafe extends Component {
                   </Header>
                   <CafeLanding />
                   <AboutUs />
-                  <Hours />
                   <Location />
+                  <Hours />
                   <MenuList items={items} />
                   <Footer />
                 </div>
