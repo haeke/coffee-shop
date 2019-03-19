@@ -82,11 +82,11 @@ class Cafe extends Component {
   logOut = () => {
     // logout the user
     localStorage.removeItem("espressoToken");
-    this.setState({
-      isAuthenticated: false
-    });
     // remove the auth header on future requests
     setAuthToken(false);
+    this.setState(() => ({
+      isAuthenticated: false
+    }));
   };
 
   setAuthenticated = () => {

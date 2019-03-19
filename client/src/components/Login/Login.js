@@ -69,8 +69,6 @@ class Login extends Component {
   };
   render() {
     const { name, password, error } = this.state;
-    console.log(error);
-    console.log(error.auth);
     return (
       <div className="loginWrapper">
         <h2 className="loginHeader">Admin Login</h2>

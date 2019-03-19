@@ -30,7 +30,7 @@ class GoogleMap extends Component {
     }));
   };
   render() {
-    const { showInfoWindow } = this.state;
+    const { showInfoWindow, activeMarker } = this.state;
     return (
       <div style={{ position: "relative", width: "100%", height: "100%" }}>
         <Map
@@ -48,7 +48,7 @@ class GoogleMap extends Component {
             position={{ lat: 40.73061, lng: -73.935242 }}
             onClick={this.onMarkerClick}
           />
-          <InfoWindow marker={this.state.activeMarker} visible={showInfoWindow}>
+          <InfoWindow marker={activeMarker} visible={showInfoWindow}>
             <div className="infoWindowContainer">
               <h2 className="infoWindowHeader">The Espresso Shop!</h2>
               <h6 className="infoWindowSubHeader">52 E 13th St</h6>
