@@ -3,3 +3,9 @@
   grid-template-columns: 1fr 1fr;
   height: 40vh;
 }
+
+.locationText {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
