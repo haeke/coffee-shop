@@ -31,7 +31,6 @@ class GoogleMap extends Component {
   };
   render() {
     const { showInfoWindow } = this.state;
-    console.log(showInfoWindow);
     return (
       <div style={{ position: "relative", width: "100%", height: "100%" }}>
         <Map
