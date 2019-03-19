@@ -11,10 +11,22 @@ class GoogleMap extends Component {
     showInfoWindow: false
   };
 
-  onMarkerClick = () => {};
+  onMapClick = () => {
+    if (this.state.showInfoWindow) {
+      this.setState(() => ({
+        showInfoWindow: false
+      }));
+    }
+  };
+
+  onMarkerClick = () => {
+    this.setState(() => ({
+      showInfoWindow: true
+    }));
+  };
   render() {
-    console.log(process.env.REACT_APP_GOOGLE_API_KEY);
     const { showInfoWindow } = this.state;
+    console.log(showInfoWindow);
     return (
       <div style={{ position: "relative", width: "100%", height: "100%" }}>
         <Map
@@ -25,15 +37,18 @@ class GoogleMap extends Component {
             lat: -1.2285,
             lng: 36.8233
           }}
+          onClick={this.onMapClick}
         >
           <Marker
             name={"Your position"}
             position={{ lat: -1.2285, lng: 36.8233 }}
+            onClick={this.onMarkerClick}
           />
-          <InfoWindow
-            marker={this.state.activeMarker}
-            visible={showInfoWindow}
-          />
+          <InfoWindow marker={this.state.activeMarker} visible={showInfoWindow}>
+            <div>
+              <h2>The Espress Shop!</h2>
+            </div>
+          </InfoWindow>
         </Map>
       </div>
     );
