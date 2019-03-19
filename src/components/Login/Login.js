@@ -13,6 +13,7 @@ class Login extends Component {
     this.state = {
       name: "",
       password: "",
+      error: "",
       errors: {}
     };
   }
@@ -45,6 +46,7 @@ class Login extends Component {
     auth
       .post("/api/users/login", { name, password })
       .then(res => {
+        console.log("handle submit reponse");
         // we confirmed that we can login
         // res.data.token should return the JWT token
         const { token } = res.data;
@@ -60,7 +62,10 @@ class Login extends Component {
         this.props.history.push("/");
       })
       .catch(error => {
-        console.error("error: ", error);
+        console.log("handle submit error ", error);
+        this.setState(() => ({
+          error: error
+        }));
       });
   };
   render() {

@@ -13,6 +13,7 @@ class Login extends Component {
     this.state = {
       name: "",
       password: "",
+      error: {},
       errors: {}
     };
   }
@@ -60,15 +61,32 @@ class Login extends Component {
         this.props.history.push("/");
       })
       .catch(error => {
-        console.error("error: ", error);
+        // handle setting the appropriate error message if a user cannot login
+        this.setState(() => ({
+          error: error.response.data
+        }));
       });
   };
   render() {
-    const { name, password } = this.state;
+    const { name, password, error } = this.state;
+    console.log(error);
+    console.log(error.auth);
     return (
       <div className="loginWrapper">
         <h2 className="loginHeader">Admin Login</h2>
         <form onSubmit={this.handleSubmit} className="formContainer">
+          {!error.auth ? (
+            <div className="error">
+              <small style={{ color: "red", visibility: "hidden" }}>
+                no error to show
+              </small>
+            </div>
+          ) : (
+            <div className="error">
+              <small style={{ color: "red" }}>{error.auth}</small>
+            </div>
+          )}
+
           <TextFieldGroup
             name="name"
             value={name}

@@ -50,33 +50,32 @@ router.post("/login", async (req, res) => {
   const password = req.body.password;
 
   let user = await User.findOne({ name });
-  console.log(user);
-  // check to see if the user exists
-  if (user) {
-    // check password
-    bcrypt.compare(password, user.password).then(isMatch => {
-      if (isMatch) {
-        // user matched - so create a JWT payload
-        const payload = { id: user.id, name: user.name };
-        // sign token -
-        jwt.sign(
-          payload,
-          process.env.REACT_APP_SERVER_SECRET,
-          { expiresIn: 3600 },
-          (err, token) => {
-            res.json({
-              sucess: true,
-              token: "Bearer " + token
-            });
-          }
-        );
-      } else {
-        return res.status(400).json({ auth: "Auth Error occured" });
-      }
-    });
-  } else {
-    return res.status(400).json({ user: "Auth error" });
+  if (!user) {
+    return res.status(404).json({ error: "user not found" });
   }
+  console.log(user);
+
+  // check password
+  bcrypt.compare(password, user.password).then(isMatch => {
+    if (isMatch) {
+      // user matched - so create a JWT payload
+      const payload = { id: user.id, name: user.name };
+      // sign token -
+      jwt.sign(
+        payload,
+        process.env.REACT_APP_SERVER_SECRET,
+        { expiresIn: 3600 },
+        (err, token) => {
+          res.json({
+            sucess: true,
+            token: "Bearer " + token
+          });
+        }
+      );
+    } else {
+      return res.status(400).json({ auth: "Authentication Error occured" });
+    }
+  });
 });
 
 //@route GET api/users/current
