@@ -13,7 +13,7 @@ class GoogleMap extends Component {
     showInfoWindow: false,
     activeMarker: {}
   };
-
+  // This function is used to hide the InfoWindow when a user clicks outside of the marker.
   onMapClick = () => {
     if (this.state.showInfoWindow) {
       this.setState(() => ({
@@ -22,7 +22,7 @@ class GoogleMap extends Component {
       }));
     }
   };
-
+  // This function is usd to show the InfoWinow when a user clicks on the marker. The activeMarker prop is needed to make sure the position of the InfoWindow is next to the Marker component.
   onMarkerClick = (props, marker, e) => {
     this.setState(() => ({
       showInfoWindow: true,
